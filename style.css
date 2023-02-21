@@ -2,24 +2,16 @@ body {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  align-items: center;
 
-  width: 100vw;
-  min-height: 100vh;
-  padding: 0;
+  width: calc(100vw - 4rem);
+  min-height: calc(100vh - 4rem);
+  padding: 2rem;
   margin: 0;
 }
 
 .container {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-
-  width: calc(100% - 4rem);
-  height: calc(100% - 4rem);
-  padding: 2rem;
-  margin: 0;
 
   text-align: center;
 }
