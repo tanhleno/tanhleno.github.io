@@ -1,20 +1,13 @@
-html {
-  height: 100%;
-}
-
-html, body {
-  width: 100%;
-}
-
 body {
+  position: absolute;
+
   display: flex;
   flex-flow: column nowrap;
   
+  width: 100%;
   min-height: 100%;
   padding: 0;
   margin: 0;
-
-  overflow: auto;
 }
 
 .container {
