@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <title>Notas de Aula</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" type="text/css" href="/default.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Notas de Aula</h1>
+      <h2>Discíplina de Fundamentos Matemáticos da Computação (FMC) III</h2>
+    </header>
+    <main role="main">
+      <article>
+        <h1>Atividade Sobre Linguagens</h1>
+
+        <h2>Contexto</h2>
+        <p>A seguir fixamos um conjunto \(A\) arbitrário como alfabeto,
+        e consideramos \(Str_A\) como o conjunto de todas as strings sobre
+        este alfabeto. Usamos \(\Lambda\) para nos referirmos à string vazia, e
+        representamos por \(v * w\) o resultado de concatenar as strings
+        \(v\) e \(w\). Como de costume assumimos que \(&lt;Str_A, *, \Lambda&gt;\) forma
+        um monoide. Assumimos ainda a seguir que uma linguagem sobre \(A\)
+        é simplismente um subconjunto de \(Str_A\).</p>
+
+        <h2>Definições</h2>
+        <p>Dadas duas linguagens \(L_1\) e \(L_2\) sobre \(A\), definimos o produto
+        \(L_1 \cdot L_2\) de \(L_1\) por \(L_2\) como a linguagem dada por \(\{w_1*w_2 :
+        w_1 \in L_1 \wedge w_2 \in L_2\}\).</p>
+        <p>Dada uma linguagem \(L\) sobre \(A\), definimos o fecho \(L^*\) de \(L\)
+        sob o produto como a linguagem dada por \(\bigcup_{n \in \mathbb{N}} L^n\), onde
+        \(L^0 := \{\Lambda\}\) e \(L^{n+1} := L \cdot L^n\).</p>
+        <p>Definimos ainda o fecho positivo \(L^+\) de \(L\) sob o produto como a linguagem
+        dada por \(\bigcup_{n \in \mathbb{N}\\\{0\}} L^n\).</p>
+
+        <h2>Propriedades</h2>
+        <p>Seguem algumas propriedades do produto de linguagens, dados \(L, M, N \in Str_A\)
+        arbitrários:</p>
+        <ol type="a">
+          <li>\(L \cdot (M \cdot N) = (L \cdot M) \cdot N\)</li>
+          <li>\(L \cdot \{\Lambda\} = L = \{\Lambda\} \cdot L\)</li>
+          <li>\(L \cdot \emptyset = \emptyset = \emptyset \cdot L\)</li>
+          <li>\(L \cdot (M \cup N) = (L \cdot M) \cup (L \cdot N)\)</li>
+          <li>\(L \cdot (M \cap N) \subseteq (L \cdot M) \cap (L \cdot N)\),
+          mas a recíproca (\(\supseteq\)) nem sempre vale.</li>
+          <li>Se \(L \subseteq M\), então \(N \cdot L \subseteq N \cdot M\) e
+          também \(L \cdot N \subseteq M \cdot N\).</li>
+        </ol>
+        <h3>Demonstrações</h3>
+        <h4>(a) (1º opção)</h4>
+        <p>Seja \(x \in L \cdot (M \cdot N)\) (1). Por (1) e pela definição do produto
+        entre linguagens temos \(l \in L\) (2a) e \(w_1 \in (M \cdot N)\) (2b) tais que
+        \(x = l * w_1\) (2). Analogamente temos \(w_1 = m * n\) (3) sendo \(m \in M\)
+        (3a) e \(n \in N\) (3b). Usando a igualdade (3) na equação (2) temos \(x = l *
+        (m * n)\) (4). Por (4) e pela associatividade da concatenação temos \(x = (l *
+        m) * n\) (5). Defina \(w_2 := l * m\) (6). Por (6), (2a), (3a) e pela 
+        definição do produto entre linguagens temos \(w_2 \in L \cdot M\) (6a). Usando
+        a definição (6) na equação (5) temos \(x = w_2 * n\) (7). Por (7), (6a), (3b)
+        e pela definição do produto entre linguagens temos \(x \in (L \cdot M) \cdot N\)
+        (8). Logo, podemos concluir \(L \cdot (M \cdot N) \subseteq (L \cdot M) \cdot N\)
+        (9) por (1), (8) e pela definição de inclusão.</p>
+        <p>Analogamente temos \(L \cdot (M \cdot N) \supseteq (L \cdot M) \cdot N\)
+        (10).</p>
+        <p>Portanto, por (9), (10) e pela definição da igualdade entre conjuntos temos
+        \(L \cdot (M \cdot N) = (L \cdot M) \cdot N\).</p>
+      </article>
+      <th>
+      <article>
+        <h1>Desafio</h1>
+        <h2>Definições</h2>
+        <h3>União de uma família</h3>
+        <p> Seja \(\mathbb{A}\) uma família de conjuntos. Definimos a união da família \(\mathbb{A}\)
+        da seguinte forma:
+        \[a \in \bigcup_{A \in \mathbb{A}} A \iff (\exists A)[a \in A \wedge A \in \mathbb{A}]\]</p>
+        <h3>Conjunto de todas as strings</h3>
+        <p>Seja \(A\) um conjunto de símbolos. Definimos o conjunto de todas as strings \(Str_A\)
+        como o menor conjunto (pela relação de ordem de inclusão) que satisfaz as seguintes regras:</p>
+        <ol>
+          <li>\(\Lambda \in Str_A\)</li>
+          <li>\(A \subseteq Str_A\)</li>
+          <li>Para quaisqueres \(w_1\) e \(w_2\), se \(w_1, w_2 \in Str_A\) então
+          \(w_1 * w_2 \in Str_A\).</li>
+        </ol>
+        <h3>Linguagem</h3>
+        Assumimos que uma linguagem sobre \(A\) é simplismente um subconjunto de \(Str_A\).</p>
+
+        <h3>Potência de uma linguagem</h3>
+        <p>Seja \(L\) uma linguagem. Definimos a potência de \(L\) pelas
+        seguintes regras:</p>
+        <ul>
+          <li>\(L^0 = \{\Lambda\}\)</li>
+          <li>\(L^{n+1} = L \cdot L^n\)</li>
+        </ul>
+        <h3>Fecho de uma linguagem</h3>
+        <p>Seja \(L\) uma linguagem. Definimos o fecho de \(L\) como:
+        \[L^* = \bigcup_{n \in \mathbb{N}} L^n\]</p>
+
+        <h2>Lemas</h2>
+        <h3>Lema (I) - Todo produto entre linguagens é também uma linguagem</h3>
+        <p>Sejam \(L_1, L_2 \subseteq Str_A\), demonstremos que \(L_1 \cdot L_2
+        \subseteq Str_A\).</p>
+        <p>Sejam \(x \in L_1 \cdot L_2\) temos pela definição do
+        produto entre linguagens que \(x = w_1 * w_2\) sendo \(w_1 \in L_1\) e \(w_2 \in L_2\).
+        Note que \(w_1 \in Str_A\) pois \(L_1 \subseteq Str_A\) e analogamente \(w_2 \in Str_A\).
+        Logo, \(x \in Str_A\) pois \(w_1 * w_2 \in Str_A\) conforme a definição do \(Str_A\).
+        Portanto, \(L_1 \cdot L_2 \subseteq Str_A\).</p>
+        <h3>Lema (II) - Toda potência de uma linguagem é também uma linguagem</h3>
+        <p>Sejam \(n \in \mathbb{N}\) e \(L \subseteq Str_A\). Demonstremos por indução
+        sob \(n\) que \(L^n \subseteq Str_A\).</p>
+        <p>Passo base. Considere \(n = 0\). Observe que \(L^0 = \{\Lambda\}\) pela definição
+        da potência de linguagens e que \(\{\Lambda\} \subseteq Str_A\) pois 
+        \(\Lambda \in Str_A\) pela definição do \(Str_A\).</p>
+        <p>Passo indutivo. Suponha por hipótese de indução que \(L^k \subseteq Str_A\) para
+        algum \(k \in \mathbb{N}\). Demonstremos que \(L^{k + 1} \subseteq Str_A\).
+        Note que \(L^{k + 1} = L \cdot L^k\) pela definição da potência de uma linguagem.
+        Observe ainda que \(L \subseteq Str_A\) pela definição do \(Str_A\) e que \(L^k
+        \subseteq Str_A\) pela hipótese de indução. Logo, \(L^{k + 1} \subseteq Str_A\) pois
+        \(L \cdot L^k \subseteq Str_A\) conforme o lema (I).</p>
+        <p>Portanto, \(L^n \subseteq Str_A\) para qualquer \(n \in \mathbb{N}\).</p>
+        <h3>Lemma (III)</h3>
+        <p>Sejam \(n, m \in \mathbb{N}\) e \(L \subseteq Str_A\). Demonstremos por indução
+        sob \(m\) que \(L^n \cdot L^m = L^{n + m}\).</p>
+        <p>Passo base. (...).</p>
+
+        <h2>Demonstração</h2>
+        <p>Demonstremos que \(A^* = Str_A\).</p>
+        <p>Comecemos mostrando que \(A^* \subseteq Str_A\).</p>
+        <p>Seja \(a \in A^*\). Observe que \(a \in \bigcup_{n \in \mathbb{N}} A^n\)
+        pela definição do fecho de uma linguagem. Note ainda que temos \(n \in \mathbb{N}\)
+        tal que \(a \in A^n\) pela definição da união de uma família. Segue então por \(A \subseteq Str_A\)
+        conforme a definição do \(Str_A\) e pelo lema (II) que \(A^n \subseteq Str_A\).
+        Logo, \(a \in Str_A\). Portanto, \(A^* \subseteq Str_A\).</p>
+        <p>Mostremos agora que \(A^* \supseteq Str_A\).</p>
+      </article>
+    </main>
+    <footer>
+      <p>Feito com amor por Tanhleno</p>
+    </footer>
+  </body>
+</html>
